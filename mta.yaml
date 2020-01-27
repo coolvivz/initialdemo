@@ -1,0 +1,41 @@
+ID: INITIAl_DEMO
+_schema-version: '2.1'
+description: Initial Demo Content
+version: 0.0.1
+
+modules:
+ - name: hdb_demo
+   type: hdb
+   path: hdb_demo
+   requires:
+    - name: hdi_hdb_demo
+      properties:
+        TARGET_CONTAINER: ~{hdi-container-name}
+
+
+
+    - name: cross-container-service-1
+      group: SERVICE_REPLACEMENTS
+
+      properties:
+        key: ServiceName_1
+        service: ~{the-service-name}
+                          
+
+
+resources:
+ - name: hdi_hdb_demo
+   parameters:
+      config:
+         schema: INITIAL
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
+
+ - name: cross-container-service-1
+   parameters:
+      service-name: UPS_HDB
+   properties:
+      the-service-name: ${service-name}
+   type: org.cloudfoundry.existing-service
+

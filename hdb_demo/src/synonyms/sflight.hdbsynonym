@@ -1,0 +1,8 @@
+{
+  "SFLIGHT": {
+    "target": {
+      "object": "SBOOK",
+      "schema": "SFLIGHT"
+    }
+  }
+}
